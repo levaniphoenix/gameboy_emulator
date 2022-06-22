@@ -1,8 +1,9 @@
 mod cpu;
+mod mmu;
 mod registers;
 use crate::cpu::CPU;
+use crate::mmu::MMU;
 use crate::registers::Registers;
-
 fn main() {
     // let reg = Registers::new();
     // println!("{:?}", reg);
