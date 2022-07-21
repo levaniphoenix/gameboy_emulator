@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use crate::mmu::MMU;
 use crate::registers::CpuFlag;
 use crate::registers::Registers;
@@ -169,7 +170,7 @@ mod test {
         let mut cpu = CPU::new();
         cpu.reg.a = 0x3A;
         cpu.reg.b = 0xC6;
-        let cycle = cpu.call(0x80);
+        let _cycle = cpu.call(0x80);
         assert_eq!(cpu.reg.a, 0);
         assert_eq!(cpu.reg.f, 0b10110000)
     }
@@ -178,7 +179,7 @@ mod test {
         let mut cpu = CPU::new();
         cpu.mmu.memory[0] = 0xFF;
         cpu.reg.a = 0x3C;
-        let cycle = cpu.call(0xC6);
+        let _cycle = cpu.call(0xC6);
         assert_eq!(cpu.reg.a, 0x3B);
         assert_eq!(cpu.reg.f, 0b00110000);
     }
@@ -188,13 +189,13 @@ mod test {
         let mut cpu = CPU::new();
         cpu.reg.setbc(0x0605);
         cpu.reg.sethl(0x8A23);
-        let cycle = cpu.call(0x09);
+        let _cycle = cpu.call(0x09);
         assert_eq!(cpu.reg.hl(), 0x9028);
         assert_eq!(cpu.reg.f, 0b00100000);
 
         cpu.reg.sp = 0xFFFF;
         cpu.mmu.memory[0] = 2;
-        let cycle = cpu.call(0xE8);
+        let _cycle = cpu.call(0xE8);
         assert_eq!(cpu.reg.sp, 0x0001);
         assert_eq!(cpu.reg.f, 0b00110000);
     }
